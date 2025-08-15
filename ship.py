@@ -1,5 +1,6 @@
 import pygame
 import sys
+from bullet import Bullet
 
 screenWidth = 900
 screenHeight= 600
@@ -7,20 +8,22 @@ screenHeight= 600
 class Player(pygame.sprite.Sprite):
     def __init__(self,x,y):
         super().__init__()
-        self.image = pygame.image.load("/home/faisal/Projects/Python_Game_1/Assets/player.png").convert_alpha()
+        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/player.png").convert_alpha()
         scaleWidth = self.image.get_width()*4
         scaleHeight= self.image.get_height()*4
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))
         self.rect=self.image.get_rect()
         self.pos=pygame.math.Vector2(x,y)
         
-        
+
         self.speed=5
         self.dashSpeed=15
         self.isDashing=False
         self.dashTime=0
         self.dashDuration=200
         self.canDash=True
+        self.lastBullet = 0
+        self.bulletCooldown = 5000
 
         self.rect.midbottom=self.pos
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
@@ -51,6 +54,7 @@ class Player(pygame.sprite.Sprite):
             self.pos.x-=currentSpeed
         if keys[pygame.K_d]:
             self.pos.x+=currentSpeed
+
         
 
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
@@ -58,3 +62,12 @@ class Player(pygame.sprite.Sprite):
         screen_rect = pygame.Rect(0, 0, screenWidth, screenHeight)
         self.rect.clamp_ip(screen_rect)
         self.pos = pygame.math.Vector2(self.rect.midbottom)
+
+
+    def fire(self):
+        projectileImage=("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/player bullet")
+        currentTime = pygame.time.get_ticks()
+        
+        bullet = Bullet(self.rect.centerx, self.rect.top, (0,-1))
+        return bullet
+        return None
