@@ -5,7 +5,7 @@ pygame.init()
 
 #Constants
 
-screenWidth = 800
+screenWidth = 900
 screenHeight= 600
 FPS=60
 
@@ -23,26 +23,48 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))
         self.rect=self.image.get_rect()
         self.pos=pygame.math.Vector2(x,y)
-        self.speed=4
+        
+        self.speed=5
+        self.dashSpeed=15
+        self.isDashing=False
+        self.dashTime=0
+        self.dashDuration=200
+        self.canDash=True
+
         self.rect.midbottom=self.pos
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
-       
-
-
 
     def update(self,keys):
+
+        currentSpeed = self.speed
+        
+        if self.isDashing and pygame.time.get_ticks() - self.dashTime > self.dashDuration:
+            self.isDashing=False
+        
+        if keys[pygame.K_LSHIFT] and self.canDash:
+            if keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_a] or keys[pygame.K_d]:
+                self.isDashing = True
+                self.dashTime=pygame.time.get_ticks()
+                self.canDash=False
+        if not keys[pygame.K_LSHIFT]:
+            self.canDash=True
+
+        if self.isDashing:
+            currentSpeed = self.dashSpeed
+
         if keys[pygame.K_w]:
-            self.pos.y-=self.speed
+            self.pos.y-=currentSpeed
         if keys[pygame.K_s]:
-            self.pos.y+=self.speed
+            self.pos.y+=currentSpeed
         if keys[pygame.K_a]:
-            self.pos.x-=self.speed
+            self.pos.x-=currentSpeed
         if keys[pygame.K_d]:
-            self.pos.x+=self.speed
+            self.pos.x+=currentSpeed
+        
 
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
 
-        screen_rect = pygame.Rect(0, 0, 800, 600)
+        screen_rect = pygame.Rect(0, 0, screenWidth, screenHeight)
         self.rect.clamp_ip(screen_rect)
         self.pos = pygame.math.Vector2(self.rect.midbottom)
 
@@ -51,8 +73,6 @@ class Player(pygame.sprite.Sprite):
 
 gameScreen=pygame.display.set_mode((screenWidth,screenHeight))
 gameClock = pygame.time.Clock()
-
-player = Player(100, 100)
 player = Player(screenWidth // 2, screenHeight)
 
 all_sprites = pygame.sprite.Group()
