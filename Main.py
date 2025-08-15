@@ -10,6 +10,7 @@ screenWidth = ship.screenWidth
 screenHeight= ship.screenHeight
 FPS=60
 
+
 #Color
 white=(255,255,255)
 black=(0,0,0)

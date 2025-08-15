@@ -14,6 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.pos=pygame.math.Vector2(x,y)
         
+        
         self.speed=5
         self.dashSpeed=15
         self.isDashing=False
