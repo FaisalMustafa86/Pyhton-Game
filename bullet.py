@@ -1,5 +1,4 @@
 import pygame
-import sys
 
 
 screenWidth = 900
