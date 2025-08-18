@@ -16,8 +16,8 @@ gameState = 1
 playState = 1
 pauseState = 2
 
-enemyx = random.randint(0,900)
-enemyy = random.randint(30,100)
+enemyx = random.randint(10,900)
+enemyy = random.randint(50,100)
 
 skyBlue = (135, 206, 235)
 
@@ -36,7 +36,7 @@ all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 all_sprites.add(enemy1)
 
-def drawText(surface, text, size, x, y, color=(255,255,255)):
+def drawText(surface, text, size, x, y, color=(2,42,123)):
     font = pygame.font.SysFont("binaryCHRBRK", size)
     label = font.render(text, True, color)
     rect = label.get_rect(center=(x, y))
@@ -66,6 +66,14 @@ while running:
             enemy_hit.health -= 1
             if enemy_hit.health <= 0:
                 enemy_hit.kill()
+               
+                enemyx = random.randint(10,900)
+                enemyy = random.randint(50,100)
+
+                
+                newEnemy = enemy.Enemy(enemyx, enemyy)
+                enemies.add(newEnemy)
+                all_sprites.add(newEnemy)            
 
     gameScreen.fill(skyBlue)
     all_sprites.draw(gameScreen)

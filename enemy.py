@@ -1,4 +1,5 @@
 import pygame
+from bullet import Bullet
 
 screenWidth = 900
 screenHeight = 600
@@ -18,3 +19,12 @@ class Enemy(pygame.sprite.Sprite):
 
     def update(self, keys=None):
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
+
+        
+
+    def fire(self):
+        currentTime = pygame.time.get_ticks()
+        if currentTime - self.lastBullet >= self.bulletCooldown:
+            self.lastBullet = currentTime
+            return Bullet(self.rect.centerx, self.rect.top, (0, -1))
+        return None
