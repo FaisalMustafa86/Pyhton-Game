@@ -1,6 +1,6 @@
 import pygame
 
-class Bullet(pygame.sprite.Sprite):
+class enemyBullet(pygame.sprite.Sprite):
     def __init__(self, x, y, direction):
         super().__init__()
         self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/player bullet.png").convert_alpha()
@@ -14,10 +14,8 @@ class Bullet(pygame.sprite.Sprite):
 
     def update(self, keys=None ):
         self.rect.x += self.direction[0] * self.speed
-        self.rect.y += self.direction[1] * self.speed
+        self.rect.y -= self.direction[1] * self.speed
         if self.rect.bottom < 0 or self.rect.top > 600:
             self.kill()
 
 
-
-    

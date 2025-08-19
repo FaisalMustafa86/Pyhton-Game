@@ -7,13 +7,16 @@ screenHeight = 600
 class Player(pygame.sprite.Sprite):
     def __init__(self,x,y):
         super().__init__()
-        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/player.png").convert_alpha()
-        scaleWidth = self.image.get_width()*4
-        scaleHeight= self.image.get_height()*4
+        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/jet.png").convert_alpha()
+        scaleWidth = self.image.get_width()*3
+        scaleHeight= self.image.get_height()*3
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))
         self.rect = self.image.get_rect()
         self.pos = pygame.math.Vector2(x, y)
 
+
+
+        self.health = 1
         self.speed = 5
         self.dashSpeed = 15
         self.isDashing = False
@@ -50,6 +53,7 @@ class Player(pygame.sprite.Sprite):
             self.pos.x -= currentSpeed
         if keys[pygame.K_d]:
             self.pos.x += currentSpeed
+
 
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
         self.rect.clamp_ip(pygame.Rect(0,0,screenWidth,screenHeight))
