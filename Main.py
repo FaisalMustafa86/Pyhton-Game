@@ -4,8 +4,10 @@ import ship
 from enemy import Enemy
 import random
 
+pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 pygame.font.init()
+
 
 screenWidth = ship.screenWidth
 screenHeight = ship.screenHeight
@@ -33,6 +35,11 @@ death_time = 0
 
 enemy1 = Enemy(enemyx, enemyy, random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)]))
 
+shootSound = pygame.mixer.Sound("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/shoot.wav")
+pygame.mixer.music.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/bgMusic.mp3")
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play(-1)
+
 projectiles = pygame.sprite.Group()
 enemy_projectiles = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
@@ -52,6 +59,7 @@ last_shot = 0
 
 running = True
 while running:
+    
     keys = pygame.key.get_pressed()
     current_time = pygame.time.get_ticks()
 
@@ -64,6 +72,7 @@ while running:
                 if bullet_obj:
                     projectiles.add(bullet_obj)
                     all_sprites.add(bullet_obj)
+                    shootSound.play()
             elif event.key == pygame.K_p:
                 gameState = pauseState if gameState == playState else playState
 
@@ -102,7 +111,7 @@ while running:
                     player_sprite.kill()
                     player_alive = False
                     death_time = current_time
-                    
+
                     deaths += 1
 
     if gameState == playState:
@@ -112,12 +121,14 @@ while running:
                 if bullet_obj:
                     enemy_projectiles.add(bullet_obj)
                     all_sprites.add(bullet_obj)
+                    shootSound.play()
             last_shot = current_time
 
     gameScreen.fill(skyBlue)
     all_sprites.draw(gameScreen)
     drawText(gameScreen, "SCORE: " + str(score), 30 , 820,25)
     drawText(gameScreen, "DEATHS: " + str(deaths), 30, 820, 55)
+    
 
     if gameState == pauseState:
         drawText(gameScreen, "PAUSED", 50, screenWidth // 2, screenHeight // 2)

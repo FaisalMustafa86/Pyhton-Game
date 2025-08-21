@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
 
 
 
-        self.health = 1
+        self.health = 3
         self.speed = 5
         self.dashSpeed = 15
         self.isDashing = False
