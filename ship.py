@@ -7,16 +7,16 @@ screenHeight = 600
 class Player(pygame.sprite.Sprite):
     def __init__(self,x,y):
         super().__init__()
-        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/jet.png").convert_alpha()
-        scaleWidth = self.image.get_width()*3
-        scaleHeight= self.image.get_height()*3
+        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/jet2.png").convert_alpha()
+        scaleWidth = self.image.get_width()*2
+        scaleHeight= self.image.get_height()*2
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))
         self.rect = self.image.get_rect()
         self.pos = pygame.math.Vector2(x, y)
 
 
 
-        self.health = 3
+        self.health = 1
         self.speed = 5
         self.dashSpeed = 15
         self.isDashing = False

@@ -25,7 +25,7 @@ enemyy = random.randint(50,550)
 skyBlue = (135, 206, 235)
 
 gameScreen = pygame.display.set_mode((screenWidth, screenHeight))
-pygame.display.set_caption("Game")
+pygame.display.set_caption("Cat Invasion")
 gameClock = pygame.time.Clock()
 
 player = ship.Player(screenWidth // 2, screenHeight - 50)
@@ -36,6 +36,7 @@ death_time = 0
 enemy1 = Enemy(enemyx, enemyy, random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)]))
 
 shootSound = pygame.mixer.Sound("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/shoot.wav")
+shootSound.set_volume(0.4)
 pygame.mixer.music.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/bgMusic.mp3")
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
@@ -102,6 +103,7 @@ while running:
                 newEnemy = Enemy(enemyx, enemyy, random.choice([(1,0), (-1,0), (0,1), (0,-1)]))
                 enemies.add(newEnemy)
                 all_sprites.add(newEnemy) 
+                
 
         player_hits = pygame.sprite.groupcollide(pygame.sprite.Group(player), enemy_projectiles, False, True)
         for player_sprite, bullets in player_hits.items():
@@ -109,6 +111,7 @@ while running:
                 player_sprite.health -= len(bullets)
                 if player_sprite.health <= 0:
                     player_sprite.kill()
+                    
                     player_alive = False
                     death_time = current_time
 
