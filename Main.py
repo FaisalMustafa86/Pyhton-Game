@@ -15,14 +15,18 @@ FPS = 60
 score = 0
 deaths = 0
 
-gameState = 1
+gameState = 3
 playState = 1
 pauseState = 2
+menuState = 3
+deathState = 4
 
 enemyx = random.randint(50,850)
 enemyy = random.randint(50,550)
 
 skyBlue = (135, 206, 235)
+black = (0,0,0)
+white = (255,255,255)
 
 gameScreen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption("Cat Invasion")
@@ -37,7 +41,7 @@ enemy1 = Enemy(enemyx, enemyy, random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
 
 shootSound = pygame.mixer.Sound("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/shoot.wav")
 shootSound.set_volume(0.4)
-pygame.mixer.music.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/bgMusic.mp3")
+bossMusic =  pygame.mixer.music.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/bgMusic.mp3")
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
 
@@ -58,6 +62,12 @@ def drawText(surface, text, size, x, y, color=(10,50,101)):
 enemyShootCooldown = 300
 last_shot = 0
 
+
+playButtonRect = pygame.Rect(700,200,130,50)
+exitButtonRect = pygame.Rect(700,300,130,50)
+
+  
+
 running = True
 while running:
     
@@ -65,17 +75,30 @@ while running:
     current_time = pygame.time.get_ticks()
 
     for event in pygame.event.get():
+
+        mouseX,mouseY=pygame.mouse.get_pos()
+
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_l and player_alive:
-                bullet_obj = player.fire()
-                if bullet_obj:
-                    projectiles.add(bullet_obj)
-                    all_sprites.add(bullet_obj)
-                    shootSound.play()
-            elif event.key == pygame.K_p:
-                gameState = pauseState if gameState == playState else playState
+
+        if exitButtonRect.collidepoint((mouseX,mouseY)):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                running = False
+
+        if playButtonRect.collidepoint((mouseX,mouseY)):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                gameState = playState
+        
+            elif event.type == pygame.KEYDOWN: 
+                if event.key == pygame.K_l and player_alive:
+                    bullet_obj = player.fire()
+                    if bullet_obj:
+                        projectiles.add(bullet_obj)
+                        all_sprites.add(bullet_obj)
+                        shootSound.play()
+                elif event.key == pygame.K_p:
+                    gameState = pauseState if gameState == playState else playState
+        
 
     if gameState == playState:
         if player_alive:
@@ -127,6 +150,10 @@ while running:
                     shootSound.play()
             last_shot = current_time
 
+
+
+
+
     gameScreen.fill(skyBlue)
     all_sprites.draw(gameScreen)
     drawText(gameScreen, "SCORE: " + str(score), 30 , 820,25)
@@ -135,6 +162,16 @@ while running:
 
     if gameState == pauseState:
         drawText(gameScreen, "PAUSED", 50, screenWidth // 2, screenHeight // 2)
+        
+
+    if gameState == menuState:
+        gameScreen.fill(black)
+        pygame.draw.rect(gameScreen, white, playButtonRect)
+        pygame.draw.rect(gameScreen, white, exitButtonRect)
+
+
+        drawText (gameScreen, "PLAY",45,765,220)
+        drawText (gameScreen, "Exit",45,765,320)
 
     pygame.display.flip()
     gameClock.tick(FPS)

@@ -7,17 +7,17 @@ screenHeight = 600
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y,direction):
         super().__init__()
-        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/enemy.png").convert_alpha()
-        scaleWidth = self.image.get_width()*2
-        scaleHeight = self.image.get_height()*2
+        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/boss1.png").convert_alpha()
+        scaleWidth = self.image.get_width()*4
+        scaleHeight = self.image.get_height()*4
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))
         self.rect = self.image.get_rect()
         self.pos = pygame.math.Vector2(x, y)
-        self.speed = 4
+        self.speed = 9
         self.direction = pygame.math.Vector2(direction)
 
         self.lastBullet = 0
-        self.bulletCooldown = 600
+        self.bulletCooldown = 200
 
         self.health = 1
 
