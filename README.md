@@ -62,8 +62,9 @@ Edit
 python main.py
 📸 Screenshots
 Menu
-
+(1.png)
 Gameplay
+(2.png)
 
 ⚡ To-Do / Future Ideas
 Add power-ups (extra health, rapid fire, shields)
