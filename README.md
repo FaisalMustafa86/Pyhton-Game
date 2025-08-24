@@ -62,9 +62,9 @@ Edit
 python main.py
 📸 Screenshots
 Menu
-(/home/faisal/Documents/GitHub/Pyhton-Game/1.png)
+!(/home/faisal/Documents/GitHub/Pyhton-Game/1.png)
 Gameplay
-(/home/faisal/Documents/GitHub/Pyhton-Game/2.png)
+![To-Do List Screenshot](image.png)
 ⚡ To-Do / Future Ideas
 Add power-ups (extra health, rapid fire, shields)
 
