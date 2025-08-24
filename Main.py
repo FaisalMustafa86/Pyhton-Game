@@ -13,7 +13,7 @@ screenWidth = ship.screenWidth
 screenHeight = ship.screenHeight
 FPS = 60
 score = 0
-deaths = 0
+health = 3
 
 gameState = 3
 playState = 1
@@ -45,6 +45,19 @@ bossMusic =  pygame.mixer.music.load("/home/faisal/Documents/GitHub/Pyhton-Game/
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
 
+
+menuShip = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/jet2.png").convert_alpha()
+menuShip = pygame.transform .scale(menuShip,(200,200))
+menuShip = pygame.transform.rotate(menuShip, 50)
+
+menuCat =  pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/enemy.png").convert_alpha()
+menuCat = pygame.transform.scale(menuCat,(100,100))
+menuCat= pygame.transform.rotate(menuCat,10)
+
+menuBullet = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/player bullet.png")
+menuBullet = pygame.transform.scale(menuBullet,(10,40))
+menuBullet = pygame.transform.rotate(menuBullet,51)
+
 projectiles = pygame.sprite.Group()
 enemy_projectiles = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
@@ -65,6 +78,7 @@ last_shot = 0
 
 playButtonRect = pygame.Rect(700,200,130,50)
 exitButtonRect = pygame.Rect(700,300,130,50)
+retryButtonRect = pygame.Rect(700,200,130,50)
 
   
 
@@ -110,6 +124,15 @@ while running:
                 player.rect.midbottom = (int(player.pos.x), int(player.pos.y))
                 all_sprites.add(player)
 
+        if current_time - last_shot > enemyShootCooldown:
+            for enemy in enemies:
+                bullet_obj = enemy.fire()
+                if bullet_obj:
+                    enemy_projectiles.add(bullet_obj)
+                    all_sprites.add(bullet_obj)
+                    shootSound.play()
+            last_shot = current_time
+
         projectiles.update()
         enemy_projectiles.update()
 
@@ -138,26 +161,17 @@ while running:
                     player_alive = False
                     death_time = current_time
 
-                    deaths += 1
+                    health -= 1
 
-    if gameState == playState:
-        if current_time - last_shot > enemyShootCooldown:
-            for enemy in enemies:
-                bullet_obj = enemy.fire()
-                if bullet_obj:
-                    enemy_projectiles.add(bullet_obj)
-                    all_sprites.add(bullet_obj)
-                    shootSound.play()
-            last_shot = current_time
-
-
-
-
+                if health == 0:
+                    gameState = deathState
+                    health =3
+                    score =0
 
     gameScreen.fill(skyBlue)
     all_sprites.draw(gameScreen)
     drawText(gameScreen, "SCORE: " + str(score), 30 , 820,25)
-    drawText(gameScreen, "DEATHS: " + str(deaths), 30, 820, 55)
+    drawText(gameScreen, "HEALTH: " + str(health), 30, 820, 55)
     
 
     if gameState == pauseState:
@@ -165,13 +179,30 @@ while running:
         
 
     if gameState == menuState:
-        gameScreen.fill(black)
+        gameScreen.fill(skyBlue)
         pygame.draw.rect(gameScreen, white, playButtonRect)
         pygame.draw.rect(gameScreen, white, exitButtonRect)
 
-
         drawText (gameScreen, "PLAY",45,765,220)
         drawText (gameScreen, "Exit",45,765,320)
+        drawText (gameScreen, "CAT INVASION", 100, 450,100 )
+
+        gameScreen.blit(menuShip,(400,300))
+        gameScreen.blit(menuCat,(100,140))
+        gameScreen.blit(menuBullet,(340,290))
+
+    if gameState == deathState:
+        gameScreen.fill(skyBlue)
+        pygame.draw.rect(gameScreen, white, retryButtonRect)
+        pygame.draw.rect(gameScreen, white, exitButtonRect)
+
+        drawText (gameScreen, "RETRY",45,765,220)
+        drawText (gameScreen, "Exit",45,765,320)
+        drawText (gameScreen, "YOU DIED", 100, 450,100 )  
+
+        gameScreen.blit(menuShip,(400,300))
+        gameScreen.blit(menuCat,(100,140))
+        gameScreen.blit(menuBullet,(340,290))      
 
     pygame.display.flip()
     gameClock.tick(FPS)

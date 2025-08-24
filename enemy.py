@@ -17,9 +17,9 @@ class Enemy(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(direction)
 
         self.lastBullet = 0
-        self.bulletCooldown = 200
+        self.bulletCooldown =   0
 
-        self.health = 1
+        self.health = 2
 
         self.rect.midbottom = (int(self.pos.x), int(self.pos.y))
 
