@@ -57,11 +57,8 @@ Clone or download this repository.
 Run the game:
 
 bash
-
 Copy
-
 Edit
-
 python main.py
 
 📸 Screenshots
