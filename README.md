@@ -57,15 +57,23 @@ Clone or download this repository.
 Run the game:
 
 bash
+
 Copy
+
 Edit
+
 python main.py
+
 📸 Screenshots
+
 Menu
 ![Menu screenshot](1.png)
+
 Gameplay
 ![Gameplay screenshot](2.png)
+
 ⚡ To-Do / Future Ideas
+
 Add power-ups (extra health, rapid fire, shields)
 
 Boss battles
