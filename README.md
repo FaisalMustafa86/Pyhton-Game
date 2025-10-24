@@ -29,31 +29,20 @@ The game includes a **menu, pause system, respawn mechanics, sounds, music, and 
 ---
 
 ## 📂 Project Structure
-Cat-Invasion/
+```Cat-Invasion/
 
 │── ship.py # Player class
-
 │── enemy.py # Enemy class
-
-│── main.py # Main game loop (this file)
-
+│── main.py # Main game loop
 │── Assets/ # Images and sounds
-
 │ ├── jet2.png
-
 │ ├── enemy.png
-
 │ ├── player bullet.png
-
 │ ├── shoot.wav
-
 │ └── bgMusic.mp3
+└── README.md (this file)
+```
 
-└── README.md
-
-yaml
-Copy
-Edit
 
 ---
 
