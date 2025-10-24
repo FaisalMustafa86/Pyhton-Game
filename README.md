@@ -56,11 +56,9 @@ Clone or download this repository.
 
 Run the game:
 
-bash
-Copy
-Edit
+```bash
 python main.py
-
+```
 📸 Screenshots
 
 Menu
