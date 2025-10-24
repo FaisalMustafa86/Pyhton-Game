@@ -62,6 +62,7 @@ python main.py
 📸 Screenshots
 
 Menu
+
 ![Menu screenshot](Assets/1.png)
 
 Gameplay
