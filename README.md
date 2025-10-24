@@ -14,7 +14,7 @@ The game includes a **menu, pause system, respawn mechanics, sounds, music, and 
 - Player respawn system  
 - Game states: **Menu, Play, Pause, Death Screen**  
 - Background music and sound effects  
-- Custom retro font (`binaryCHRBRK`)  
+- Retro font (`binaryCHRBRK`)  
 
 ---
 
@@ -65,6 +65,7 @@ Menu
 ![Menu screenshot](Assets/1.png)
 
 Gameplay
+
 ![Gameplay screenshot](Assets/2.png)
 
 ⚡ To-Do / Future Ideas
