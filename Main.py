@@ -39,22 +39,22 @@ death_time = 0
 
 enemy1 = Enemy(enemyx, enemyy, random.choice([(1, 0), (-1, 0), (0, 1), (0, -1)]))
 
-shootSound = pygame.mixer.Sound("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/shoot.wav")
+shootSound = pygame.mixer.Sound("Assets/shoot.wav")
 shootSound.set_volume(0.4)
-bossMusic =  pygame.mixer.music.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/bgMusic.mp3")
+bossMusic =  pygame.mixer.music.load("Assets/bgMusic.mp3")
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
 
 
-menuShip = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/jet2.png").convert_alpha()
+menuShip = pygame.image.load("Assets/jet2.png").convert_alpha()
 menuShip = pygame.transform .scale(menuShip,(200,200))
 menuShip = pygame.transform.rotate(menuShip, 50)
 
-menuCat =  pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/enemy.png").convert_alpha()
+menuCat =  pygame.image.load("Assets/enemy.png").convert_alpha()
 menuCat = pygame.transform.scale(menuCat,(100,100))
 menuCat= pygame.transform.rotate(menuCat,10)
 
-menuBullet = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/player bullet.png")
+menuBullet = pygame.image.load("Assets/player bullet.png")
 menuBullet = pygame.transform.scale(menuBullet,(10,40))
 menuBullet = pygame.transform.rotate(menuBullet,51)
 

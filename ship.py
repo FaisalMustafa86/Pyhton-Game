@@ -7,7 +7,7 @@ screenHeight = 600
 class Player(pygame.sprite.Sprite):
     def __init__(self,x,y):
         super().__init__()
-        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/jet2.png").convert_alpha()
+        self.image = pygame.image.load("Assets/jet2.png").convert_alpha()
         scaleWidth = self.image.get_width()*2
         scaleHeight= self.image.get_height()*2
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))

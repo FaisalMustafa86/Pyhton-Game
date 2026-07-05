@@ -7,7 +7,7 @@ screenHeight = 600
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, x, y,direction):
         super().__init__()
-        self.image = pygame.image.load("/home/faisal/Documents/GitHub/Pyhton-Game/Assets/boss1.png").convert_alpha()
+        self.image = pygame.image.load("Assets/boss1.png").convert_alpha()
         scaleWidth = self.image.get_width()*4
         scaleHeight = self.image.get_height()*4
         self.image = pygame.transform.scale(self.image, (scaleWidth, scaleHeight))
