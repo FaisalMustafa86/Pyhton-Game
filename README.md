@@ -1,81 +1,69 @@
 # 🐱 Cat Invasion 🚀
 
-Cat Invasion is a **2D space shooter game** built with **Python + Pygame**.  
-The player controls a spaceship and must defeat invading cats by shooting them down while avoiding enemy bullets.  
-The game includes a **menu, pause system, respawn mechanics, sounds, music, and score tracking**.
+Cat Invasion is a **2D space shooter** built with **Python + Pygame**.
+Pilot a fighter jet and defend the skies from waves of invading cats — dodge
+their fire, dash out of danger, and rack up the highest score you can.
+
+A fast, juicy free-roam arena shooter: parallax starfield, particle explosions,
+screen shake, escalating waves, boss cats, and a saved high score.
 
 ---
 
 ## 🎮 Features
-- Player spaceship with shooting ability  
-- Enemy cats that shoot bullets  
-- Random enemy spawn positions and movement  
-- Score and deaths counter  
-- Player respawn system  
-- Game states: **Menu, Play, Pause, Death Screen**  
-- Background music and sound effects  
-- Retro font (`binaryCHRBRK`)  
+- **Free-roam flight** — full 2D movement with a short-cooldown **dash**
+- **Hold-to-fire** shooting with muzzle sparks and a thruster trail
+- **Escalating waves** — more (and faster) cats every round
+- **Multiple enemy types** — grunt cats, quick cats, and a **boss cat** every 5th wave (with spread-shot attacks)
+- **Juice** — parallax starfield, explosion particles, screen shake, hit flashes, floating score pop-ups
+- **Lives system** with brief invulnerability + respawn on hit
+- **Polished UI** — animated menu, pause overlay, and a game-over screen
+- **Persistent high score** (saved to `highscore.json`)
+- **Procedural sound effects** + background music
 
 ---
 
 ## 🕹️ Controls
 | Key | Action |
 |-----|--------|
-| **L** | Fire bullet |
-| **P** | Pause / Resume game |
-| **Mouse** | Click menu buttons (Play, Retry, Exit) |
-| **ESC / X** | Quit game |
+| **W A S D** / **Arrows** | Move |
+| **L** / **Space** | Fire (hold) |
+| **L-Shift** | Dash (while moving) |
+| **P** | Pause / Resume |
+| **Esc** | Pause · back to menu · quit from menu |
+| **Mouse** | Menu buttons (Play, Retry, Menu, Quit) |
 
 ---
 
 ## 📂 Project Structure
-```Cat-Invasion/
-
-│── ship.py # Player class
-│── enemy.py # Enemy class
-│── main.py # Main game loop
-│── Assets/ # Images and sounds
-│ ├── jet2.png
-│ ├── enemy.png
-│ ├── player bullet.png
-│ ├── shoot.wav
-│ └── bgMusic.mp3
-└── README.md (this file)
 ```
-
+Cat-Invasion/
+│── Main.py       # Entry point (init + main loop)
+│── game.py       # Game state machine, waves, collisions, scoring
+│── settings.py   # All tunable constants
+│── assets.py     # Image/font caching + procedural sound synthesis
+│── player.py     # Player jet (movement, dash, firing)
+│── enemy.py      # Cat enemies (grunt / fast / boss)
+│── bullet.py     # Shared projectile for player & enemies
+│── effects.py    # Starfield, particles, floating text, screen shake
+│── ui.py         # Buttons, HUD, menu / pause / game-over screens
+│── Assets/       # Images, sounds, music
+└── README.md
+```
 
 ---
 
 ## ▶️ How to Run
-1. Install Python (3.10+ recommended).  
-2. Install **Pygame**:
+1. Install Python (3.10+ recommended).
+2. Install **pygame**:
    ```bash
    pip install pygame
-Clone or download this repository.
+   ```
+3. Run the game from the project folder:
+   ```bash
+   python Main.py
+   ```
 
-Run the game:
+---
 
-```bash
-python main.py
-```
-📸 Screenshots
-
-Menu
-
-![Menu screenshot](Assets/1.png)
-
-Gameplay
-
-![Gameplay screenshot](Assets/2.png)
-
-⚡ To-Do / Future Ideas
-Add power-ups (extra health, rapid fire, shields)
-
-Boss battles
-
-Multiple enemy types
-
-Levels with increasing difficulty
-
-👨‍💻 Author
+## 👨‍💻 Author
 Made with ❤️ by Faisal
