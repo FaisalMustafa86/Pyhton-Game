@@ -1,4 +1,4 @@
-# 🐱 Cat Invasion 🚀
+# Cat Invasion🐱 
 
 Cat Invasion is a **2D space shooter** built with **Python + Pygame**.
 Pilot a fighter jet and defend the skies from waves of invading cats — dodge
@@ -22,7 +22,7 @@ screen shake, escalating waves, boss cats, and a saved high score.
 
 ---
 
-## 🕹️ Controls
+##  Controls
 | Key | Action |
 |-----|--------|
 | **W A S D** / **Arrows** | Move |
@@ -34,7 +34,7 @@ screen shake, escalating waves, boss cats, and a saved high score.
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 ```
 Cat-Invasion/
 │── Main.py       # Entry point (init + main loop)
@@ -52,7 +52,7 @@ Cat-Invasion/
 
 ---
 
-## ▶️ How to Run
+##  How to Run
 1. Install Python (3.10+ recommended).
 2. Install **pygame**:
    ```bash
