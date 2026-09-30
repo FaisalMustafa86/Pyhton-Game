@@ -9,7 +9,7 @@ screen shake, escalating waves, boss cats, and a saved high score.
 
 ---
 
-## 🎮 Features
+##  Features
 - **Free-roam flight** — full 2D movement with a short-cooldown **dash**
 - **Hold-to-fire** shooting with muzzle sparks and a thruster trail
 - **Escalating waves** — more (and faster) cats every round
